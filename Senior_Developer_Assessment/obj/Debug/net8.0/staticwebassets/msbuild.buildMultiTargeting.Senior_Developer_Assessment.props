@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\Senior_Developer_Assessment.props" />
+</Project>
