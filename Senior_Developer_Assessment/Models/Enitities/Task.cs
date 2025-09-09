@@ -1,7 +1,7 @@
 namespace Senior_Developer_Assessment.Models.Enitities
 {
 
-    public class Task
+    public class UserTask
     {
         public Guid Id { get; set; }
         public required string Title { get; set; }

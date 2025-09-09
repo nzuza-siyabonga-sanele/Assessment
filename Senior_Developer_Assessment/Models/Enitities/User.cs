@@ -9,7 +9,7 @@ public class User
     public required string PasswordHash { get; set; }
     public required string Role { get; set; }
 
-    public ICollection<Task> Tasks { get; set; } = new List<Task>(); // Navigation property: one user -> many tasks
+    public ICollection<UserTask> Tasks { get; set; } = new List<UserTask>(); // Navigation property: one user -> many tasks
 
 
 }
