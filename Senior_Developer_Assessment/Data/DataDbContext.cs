@@ -1,5 +1,5 @@
 using Microsoft.EntityFrameworkCore;
-using Senior_Developer_Assessment.Models.Enitities;
+using Senior_Developer_Assessment.Models.Entities;
 
 namespace Senior_Developer_Assessment.Data
 {
