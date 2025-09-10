@@ -1,15 +1,11 @@
-namespace Senior_Developer_Assessment.Models.Enitities;
-
-public class User
+namespace Senior_Developer_Assessment.Models.Enitities
 {
-
-    public Guid Id { get; set; }
-    public required string Username { get; set; }
-    public required string Email { get; set; }
-    public required string PasswordHash { get; set; }
-    public required string Role { get; set; }
-
-    public ICollection<UserTask> Tasks { get; set; } = new List<UserTask>(); // Navigation property: one user -> many tasks
-
-
+    public class User
+    {
+        public Guid Id { get; set; }
+        public string Username { get; set; } = string.Empty;
+        public string Email { get; set; } = string.Empty;
+        public string PasswordHash { get; set; } = string.Empty;
+        public string Role { get; set; } = "User"; // User/Admin
+    }
 }
