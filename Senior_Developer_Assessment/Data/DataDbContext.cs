@@ -1,12 +1,13 @@
 using Microsoft.EntityFrameworkCore;
 using Senior_Developer_Assessment.Models.Enitities;
 
-namespace Senior_Developer_Assessment.Api.Data;
-
-public class DataDbContext(DbContextOptions<DataDbContext> options) : DbContext(options)
-
+namespace Senior_Developer_Assessment.Data
+{
+    public class DataDbContext : DbContext
     {
-    public DbSet<User> Users => Set<User>();
-    public DbSet<UserTask> Tasks => Set<UserTask>();
-    }
+        public DataDbContext(DbContextOptions<DataDbContext> options) : base(options) { }
 
+        public DbSet<User> Users => Set<User>();
+        public DbSet<UserTask> Tasks => Set<UserTask>();
+    }
+}
