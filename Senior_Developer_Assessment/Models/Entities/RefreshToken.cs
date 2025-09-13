@@ -1,6 +1,5 @@
-using Senior_Developer_Assessment.Models.Entities;
 
-namespace TaskTracker.Core.Entities;
+namespace Senior_Developer_Assessment.Models.Entities;
 
 public class RefreshToken
 {
@@ -12,7 +11,7 @@ public class RefreshToken
     public string RevokedByIp { get; set; } = string.Empty;
     public int UserId { get; set; }
     public User? User { get; set; }
-    
+
     public bool IsExpired => DateTime.UtcNow >= Expires;
     public bool IsRevoked => Revoked != null;
     public bool IsActive => !IsRevoked && !IsExpired;

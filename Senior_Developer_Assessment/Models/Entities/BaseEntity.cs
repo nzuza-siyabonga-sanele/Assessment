@@ -1,4 +1,4 @@
-namespace TaskTracker.Core.Entities;
+namespace Senior_Developer_Assessment.Models.Entities;
 
 public abstract class BaseEntity
 {

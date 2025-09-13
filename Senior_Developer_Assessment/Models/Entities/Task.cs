@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace TaskTracker.Core.Entities;
+namespace Senior_Developer_Assessment.Models.Entities;
 
 public class Task : BaseEntity
 {
@@ -22,7 +22,7 @@ public class Task : BaseEntity
 
     [Required]
     public int AssignedUserId { get; set; }
-    
+
 }
 
 public enum TaskStatus
