@@ -1,80 +1,147 @@
+using Microsoft.AspNetCore.Identity.Data;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using Senior_Developer_Assessment.Data;
-using Senior_Developer_Assessment.Models.Entities;
+using System.Net;
+using TaskTracker.API.Dtos;
+using TaskTracker.API.DTOs;
+using TaskTracker.Core.Interfaces;
 
-namespace Senior_Developer_Assessment.Controllers
+namespace TaskTracker.API.Controllers;
+
+[ApiController]
+[Route("api/[controller]")]
+public class TasksController : ControllerBase
 {
-    [ApiController]
-    [Route("/")]
-    public class TasksController : ControllerBase
+    private readonly ITaskService _taskService;
+    private readonly ILogger<TasksController> _logger;
+
+    private readonly string _message;
+
+
+    public TasksController(ITaskService taskService, ILogger<TasksController> logger)
     {
-        private readonly DataDbContext _context;
+        _taskService = taskService;
+        _logger = logger;
+        _message = "successfully";
 
-        public TasksController(DataDbContext context)
+    }
+
+    // Get all tasks
+    [HttpGet]
+    public async Task<IActionResult> GetTasks()
+    {
+        try
         {
-            _context = context;
+            var tasks = await _taskService.GetAllTasksAsync();
+            return Ok(new { message = _message, Info = tasks });
         }
-
-        // GET: api/tasks
-        [HttpGet]
-        public async Task<IActionResult> GetTasks()
+        catch (Exception ex)
         {
-            var tasks = await _context.Tasks.ToListAsync();
-            return Ok(tasks);
-        }
-
-        // GET: api/tasks/{id}
-        [HttpGet("{id}")]
-        public async Task<IActionResult> GetTask(Guid id)
-        {
-            var task = await _context.Tasks.FindAsync(id);
-            if (task == null) return NotFound();
-            return Ok(task);
-        }
-
-        // POST: api/tasks
-        [HttpPost]
-        public async Task<IActionResult> CreateTask([FromBody] UserTask task)
-        {
-            if (task == null) return BadRequest();
-
-            task.Id = Guid.NewGuid();
-            task.CreatedDate = DateTime.UtcNow;
-
-            _context.Tasks.Add(task);
-            await _context.SaveChangesAsync();
-
-            return CreatedAtAction(nameof(GetTask), new { id = task.Id }, task);
-        }
-
-        // PUT: api/tasks/{id}
-        [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateTask(Guid id, [FromBody] UserTask updatedTask)
-        {
-            var task = await _context.Tasks.FindAsync(id);
-            if (task == null) return NotFound();
-
-            task.Title = updatedTask.Title;
-            task.Description = updatedTask.Description;
-            task.Status = updatedTask.Status;
-            task.DueDate = updatedTask.DueDate;
-            task.AssignedUserId = updatedTask.AssignedUserId;
-
-            await _context.SaveChangesAsync();
-            return NoContent();
-        }
-
-        // DELETE: api/tasks/{id}
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteTask(Guid id)
-        {
-            var task = await _context.Tasks.FindAsync(id);
-            if (task == null) return NotFound();
-
-            _context.Tasks.Remove(task);
-            await _context.SaveChangesAsync();
-            return NoContent();
+            _logger.LogError(ex, "Error retrieving tasks");
+            return StatusCode((int)HttpStatusCode.InternalServerError, new { message = "An error occurred while retrieving tasks" });
         }
     }
+
+    // Get task by id
+    [HttpGet("{id}")]
+    public async Task<IActionResult> GetTask(int id)
+    {
+        try
+        {
+            var task = await _taskService.GetTaskByIdAsync(id);
+
+            if (task == null)
+                return NotFound();
+        
+            return Ok(new { message = _message, Info = task });
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "Error retrieving task with ID {TaskId}", id);
+            return StatusCode((int)HttpStatusCode.InternalServerError, new { message = "An error occurred while retrieving the task" });
+        }
+    }
+
+    // Update an existing task
+    [HttpPut("{id}")]
+    public async Task<IActionResult> UpdateTask(int id, [FromBody] UpdateTaskDto dto)
+    {
+        try
+        {
+
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            var success = await _taskService.UpdateTaskAsync(id, dto);
+
+            if (!success)
+                return NotFound();
+
+            return Ok(new { message = _message});
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "Error updating task with ID {TaskId}", id);
+            return StatusCode((int)HttpStatusCode.InternalServerError, new { message = "An error occurred while updating the task" });
+        }
+    }
+
+    // Update only the status of a task 
+    [HttpPatch("{id}/status")]
+    public async Task<IActionResult> UpdateTaskStatus(int id, [FromBody] UpdateStatusRequest dto)
+    {
+        try
+        {
+            var success = await _taskService.UpdateTaskStatusAsync(id, dto.Status);
+
+            if (!success)
+                return NotFound();
+
+            return Ok(new { message = _message});
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "Error updating status for task with ID {TaskId}", id);
+            return StatusCode((int)HttpStatusCode.InternalServerError, new { message = "An error occurred while updating the task status" });
+        }
+    }
+
+    // Delete a task
+    [HttpDelete("{id}")]
+    public async Task<IActionResult> DeleteTask(int id)
+    {
+        try
+        {
+            var success = await _taskService.DeleteTaskAsync(id);
+
+            if (!success)
+                return NotFound();
+
+            return Ok(new { message = _message});
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "Error deleting task with ID {TaskId}", id);
+            return StatusCode((int)HttpStatusCode.InternalServerError, new { message = "An error occurred while deleting the task" });
+        }
+    }
+
+    // Create a new task
+    [HttpPost]
+    public async Task<IActionResult> CreateTask([FromBody] CreateTaskDto dto)
+    {
+        try
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            var createdTask = await _taskService.CreateTaskAsync(dto);            
+            return Ok(new {message = _message, Info = CreatedAtAction(nameof(GetTask), new { id = createdTask.Id }, createdTask)});
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "Error creating task");
+            return StatusCode((int)HttpStatusCode.InternalServerError, new { message = "An error occurred while creating the task" });
+        }
+    }
+   
 }
