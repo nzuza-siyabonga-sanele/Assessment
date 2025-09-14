@@ -1,8 +1,8 @@
 {
   "Version": 1,
-  "Hash": "PSWxUZXl3k9ZgFkLLVTnaaPcN6S2pgNdsLaLbZdp1sc=",
-  "Source": "Senior_Developer_Assessment",
-  "BasePath": "_content/Senior_Developer_Assessment",
+  "Hash": "m/mGDRbe3fb/nW/edVpMLrBer1bB57akPUZyN8XyKXs=",
+  "Source": "Senior_Developer_Assessment.Api",
+  "BasePath": "_content/Senior_Developer_Assessment.Api",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [],

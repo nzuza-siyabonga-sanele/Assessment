@@ -1,0 +1,32 @@
+# --- Stage 1: Build ---
+FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
+WORKDIR /src
+
+# Copy csproj and restore first (leverages Docker layer caching)
+COPY ["Senior_Developer_Assessment/Senior_Developer_Assessment.csproj", "Senior_Developer_Assessment/"]
+# If you have other projects that are referenced, copy their csproj files similarly before restore
+RUN dotnet restore "Senior_Developer_Assessment/Senior_Developer_Assessment.csproj"
+
+# Copy everything and publish
+COPY . .
+WORKDIR /Assessment/Senior_Developer_Assessment
+# Publish as framework-dependent, without apphost to avoid platform-specific apphost issues
+RUN dotnet publish "Senior_Developer_Assessment.csproj" -c Release -o /app/publish /p:UseAppHost=false
+
+# --- Stage 2: Runtime ---
+FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS final
+WORKDIR /app
+
+# Listen on port 80 inside the container (map to host in docker run / compose)
+ENV ASPNETCORE_URLS=http://+:80
+EXPOSE 80
+
+# Copy published files from build stage
+COPY --from=build /app/publish .
+
+# Default entrypoint
+# Copy entrypoint
+COPY Senior_Developer_Assessment/entrypoint.sh .
+
+# Run script instead of direct dll
+ENTRYPOINT ["./entrypoint.sh"]
