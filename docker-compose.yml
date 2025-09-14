@@ -1,0 +1,13 @@
+version: "3.8"
+services:
+  api:
+    image: mcr.microsoft.com/dotnet/sdk:8.0
+    working_dir: /app
+    volumes:
+      - ./:/app
+    command: dotnet watch run --project ./Senior_Developer_Assessment/Senior_Developer_Assessment.csproj --urls "http://+:80"
+    environment:
+      - DOTNET_USE_POLLING_FILE_WATCHER=1
+      - DOTNET_HOST_PATH=/usr/share/dotnet/dotnet
+    ports:
+      - "5000:80"
