@@ -350,6 +350,7 @@ C:\Users\Sanele Nzuza\Downloads\New folder\Assessment\Senior_Developer_Assessmen
 C:\Users\Sanele Nzuza\Downloads\New folder\Assessment\Senior_Developer_Assessment\bin\Debug\net8.0\BCrypt.Net-Next.dll
 C:\Users\Sanele Nzuza\Downloads\New folder\Assessment\Senior_Developer_Assessment\bin\Debug\net8.0\Humanizer.dll
 C:\Users\Sanele Nzuza\Downloads\New folder\Assessment\Senior_Developer_Assessment\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\Sanele Nzuza\Downloads\New folder\Assessment\Senior_Developer_Assessment\bin\Debug\net8.0\Microsoft.AspNetCore.OpenApi.dll
 C:\Users\Sanele Nzuza\Downloads\New folder\Assessment\Senior_Developer_Assessment\bin\Debug\net8.0\Microsoft.Bcl.AsyncInterfaces.dll
 C:\Users\Sanele Nzuza\Downloads\New folder\Assessment\Senior_Developer_Assessment\bin\Debug\net8.0\Microsoft.Build.Locator.dll
 C:\Users\Sanele Nzuza\Downloads\New folder\Assessment\Senior_Developer_Assessment\bin\Debug\net8.0\Microsoft.CodeAnalysis.dll
@@ -509,4 +510,3 @@ C:\Users\Sanele Nzuza\Downloads\New folder\Assessment\Senior_Developer_Assessmen
 C:\Users\Sanele Nzuza\Downloads\New folder\Assessment\Senior_Developer_Assessment\obj\Debug\net8.0\Senior_Developer_Assessment.Api.pdb
 C:\Users\Sanele Nzuza\Downloads\New folder\Assessment\Senior_Developer_Assessment\obj\Debug\net8.0\Senior_Developer_Assessment.Api.genruntimeconfig.cache
 C:\Users\Sanele Nzuza\Downloads\New folder\Assessment\Senior_Developer_Assessment\obj\Debug\net8.0\ref\Senior_Developer_Assessment.Api.dll
-C:\Users\Sanele Nzuza\Downloads\New folder\Assessment\Senior_Developer_Assessment\bin\Debug\net8.0\Microsoft.AspNetCore.OpenApi.dll
