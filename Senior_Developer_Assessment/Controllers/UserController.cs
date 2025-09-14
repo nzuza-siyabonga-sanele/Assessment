@@ -1,12 +1,13 @@
 using System.Net;
 using Microsoft.AspNetCore.Mvc;
+using Senior_Developer_Assessment.DTOs;
 using Senior_Developer_Assessment.Models.Entities;
 using Senior_Developer_Assessment.Models.Interfaces;
 
 namespace Senior_Developer_Assessment.Controllers;
 
 [ApiController]
-[Route("api/[controller]")]
+[Route("info/[controller]")]
 
 public class UserController : ControllerBase
 {
@@ -122,17 +123,3 @@ public class UserController : ControllerBase
     }
 }
 
-// DTOs for request bodies
-public class RegisterRequest
-{
-    public string Username { get; set; } = string.Empty;
-    public string Email { get; set; } = string.Empty;
-    public string Password { get; set; } = string.Empty;
-    public UserRole Role { get; set; } = UserRole.User;
-}
-
-public class LoginRequest
-{
-    public string Username { get; set; } = string.Empty;
-    public string Password { get; set; } = string.Empty;
-}

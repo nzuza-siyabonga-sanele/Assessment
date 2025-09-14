@@ -116,7 +116,7 @@ How to Test:
 
 Create a new task with a past due date:
 
-POST /api/tasks
+POST /info/tasks
 Content-Type: application/json
 Authorization: Bearer <your-jwt>
 
@@ -132,7 +132,7 @@ Wait for the scheduler interval (configured in TaskStatusUpdateService).
 
 Fetch tasks:
 
-GET /api/tasks
+GET /info/tasks
 Authorization: Bearer <your-jwt>
 
 
@@ -144,22 +144,22 @@ Logs: The scheduler logs when it runs updates.
 
 Database: Query the Tasks table directly (Status should change).
 
-API response: Confirm via /api/tasks endpoint.
+API response: Confirm via /info/tasks endpoint.
 
 📂 File Locations
 
-API Entrypoint: TaskTracker.Api/Program.cs
+API Entrypoint: Senior_Developer_Assessment.Program.cs
 
-DbContext: TaskTracker.Infrastructure/Data/TaskTrackerContext.cs
+DbContext: Senior_Developer_Assessment/Data/DataDbContext.cs
 
-Repositories: TaskTracker.Infrastructure/Repositories/
+Repositories: Senior_Developer_Assessment/Models/Repositories/
 
-Services: TaskTracker.Services/
+Services: Senior_Developer_Assessment/Services/
 
-Background Service: TaskTracker.Services/TaskStatusUpdateService.cs
+Background Service: Senior_Developer_Assessment/Services/TaskStatusUpdateService.cs
 
-Migrations: TaskTracker.Infrastructure/Migrations/
+Migrations: Senior_Developer_Assessment/Migrations/
 
-Dockerfile: TaskTracker.Api/Dockerfile
+Dockerfile: Senior_Developer_Assessment/Dockerfile
 
 Compose: docker-compose.yml at repo root

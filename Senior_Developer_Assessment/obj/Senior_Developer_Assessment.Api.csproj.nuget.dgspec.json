@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Sanele Nzuza\\Desktop\\Assessment\\Senior_Developer_Assessment\\Senior_Developer_Assessment.Api.csproj": {}
+    "C:\\Users\\Sanele Nzuza\\Downloads\\New folder\\Assessment\\Senior_Developer_Assessment\\Senior_Developer_Assessment.Api.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Sanele Nzuza\\Desktop\\Assessment\\Senior_Developer_Assessment\\Senior_Developer_Assessment.Api.csproj": {
+    "C:\\Users\\Sanele Nzuza\\Downloads\\New folder\\Assessment\\Senior_Developer_Assessment\\Senior_Developer_Assessment.Api.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Sanele Nzuza\\Desktop\\Assessment\\Senior_Developer_Assessment\\Senior_Developer_Assessment.Api.csproj",
+        "projectUniqueName": "C:\\Users\\Sanele Nzuza\\Downloads\\New folder\\Assessment\\Senior_Developer_Assessment\\Senior_Developer_Assessment.Api.csproj",
         "projectName": "Senior_Developer_Assessment.Api",
-        "projectPath": "C:\\Users\\Sanele Nzuza\\Desktop\\Assessment\\Senior_Developer_Assessment\\Senior_Developer_Assessment.Api.csproj",
+        "projectPath": "C:\\Users\\Sanele Nzuza\\Downloads\\New folder\\Assessment\\Senior_Developer_Assessment\\Senior_Developer_Assessment.Api.csproj",
         "packagesPath": "C:\\Users\\Sanele Nzuza\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Sanele Nzuza\\Desktop\\Assessment\\Senior_Developer_Assessment\\obj\\",
+        "outputPath": "C:\\Users\\Sanele Nzuza\\Downloads\\New folder\\Assessment\\Senior_Developer_Assessment\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Sanele Nzuza\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -51,6 +51,10 @@
               "target": "Package",
               "version": "[8.*, )"
             },
+            "Microsoft.AspNetCore.OpenApi": {
+              "target": "Package",
+              "version": "[8.0.19, )"
+            },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
               "version": "[9.0.9, )"
@@ -67,7 +71,7 @@
             },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
-              "version": "[9.0.4, )"
+              "version": "[6.6.2, )"
             }
           },
           "imports": [

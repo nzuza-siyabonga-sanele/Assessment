@@ -105,14 +105,6 @@ app.UseHttpsRedirection();
 app.UseAuthentication();
 app.UseAuthorization();
 
-
-app.MapGet("/", (HttpContext http) =>
-{
-    http.Response.Redirect("/swagger");
-    return Results.Empty;
-});
-
-
 // Map controllers
 app.MapControllers();
 

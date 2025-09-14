@@ -8,7 +8,7 @@ using Senior_Developer_Assessment.Models.Interfaces;
 namespace Senior_Developer_Assessment.Controllers;
 
 [ApiController]
-[Route("api/[controller]")]
+[Route("info/[controller]")]
 
 public class TasksController : ControllerBase
 {

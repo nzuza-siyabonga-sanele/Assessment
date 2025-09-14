@@ -1,12 +1,12 @@
 using Microsoft.AspNetCore.Mvc;
+using Senior_Developer_Assessment.DTOs;
 using Senior_Developer_Assessment.Models.Interfaces;
 using System.Net;
 
 namespace Senior_Developer_Assessment.Controllers;
 
 [ApiController]
-[Route("api/[controller]")]
-
+[Route("info/[controller]")]
 public class AuthController : ControllerBase
 {
     private readonly IAuthService _authService;
@@ -36,7 +36,6 @@ public class AuthController : ControllerBase
         return Ok(new
         {
             nessage = "Token refreshed",
-            Token = token,
             RefreshToken = newRefreshToken
         });
     }
@@ -75,10 +74,4 @@ public class AuthController : ControllerBase
 
         return HttpContext.Connection.RemoteIpAddress?.MapToIPv4().ToString();
     }
-}
-
-// DTO for refresh token request
-public class RefreshTokenRequest
-{
-    public string Token { get; set; } = string.Empty;
 }

@@ -140,7 +140,7 @@ public class AuthService : IAuthService
         return (true, "Token refreshed successfully", newJwtToken, newRefreshToken);
     }
 
-    // Revoke refresh token
+    // Revoke refresh token using refresh token
     public async Task<bool> RevokeTokenAsync(string token, string ipAddress)
     {
         // find refresh token in database and check if active
