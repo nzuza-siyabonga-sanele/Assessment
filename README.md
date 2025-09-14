@@ -16,7 +16,7 @@ Docker Compose
 
 1. Clone the repository
 git clone https://github.com/nzuza-siyabonga-sanele/Assessment.git
-cd tasktracker
+cd Assessment
 
 2. Build and run with Docker Compose
 docker-compose up --build
