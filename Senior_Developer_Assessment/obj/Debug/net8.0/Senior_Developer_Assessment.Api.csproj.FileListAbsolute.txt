@@ -176,7 +176,9 @@ C:\Users\Sanele Nzuza\Desktop\Assessment\Senior_Developer_Assessment\bin\Debug\n
 C:\Users\Sanele Nzuza\Desktop\Assessment\Senior_Developer_Assessment\bin\Debug\net8.0\Senior_Developer_Assessment.Api.pdb
 C:\Users\Sanele Nzuza\Desktop\Assessment\Senior_Developer_Assessment\bin\Debug\net8.0\Azure.Core.dll
 C:\Users\Sanele Nzuza\Desktop\Assessment\Senior_Developer_Assessment\bin\Debug\net8.0\Azure.Identity.dll
+C:\Users\Sanele Nzuza\Desktop\Assessment\Senior_Developer_Assessment\bin\Debug\net8.0\BCrypt.Net-Next.dll
 C:\Users\Sanele Nzuza\Desktop\Assessment\Senior_Developer_Assessment\bin\Debug\net8.0\Humanizer.dll
+C:\Users\Sanele Nzuza\Desktop\Assessment\Senior_Developer_Assessment\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
 C:\Users\Sanele Nzuza\Desktop\Assessment\Senior_Developer_Assessment\bin\Debug\net8.0\Microsoft.Bcl.AsyncInterfaces.dll
 C:\Users\Sanele Nzuza\Desktop\Assessment\Senior_Developer_Assessment\bin\Debug\net8.0\Microsoft.Build.Locator.dll
 C:\Users\Sanele Nzuza\Desktop\Assessment\Senior_Developer_Assessment\bin\Debug\net8.0\Microsoft.CodeAnalysis.dll

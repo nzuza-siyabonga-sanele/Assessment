@@ -1,31 +1,28 @@
 using System.Net;
 using Microsoft.AspNetCore.Mvc;
-using Senior_Developer_Assessment.DTOs;
 using Senior_Developer_Assessment.Models.Entities;
 using Senior_Developer_Assessment.Models.Interfaces;
 
 namespace Senior_Developer_Assessment.Controllers;
 
-
 [ApiController]
 [Route("api/[controller]")]
+
 public class UserController : ControllerBase
 {
-
-    private readonly IUserService _UserService;
-    private readonly ILogger<UserController> _logger;
+    private readonly IUserService _userService;
     private readonly IAuthService _authService;
-    private readonly string _message;
+    private readonly ILogger<UserController> _logger;
+    private readonly string _message = "successfully";
 
     public UserController(IUserService userService, IAuthService authService, ILogger<UserController> logger)
     {
-        _UserService = userService;
+        _userService = userService;
         _authService = authService;
         _logger = logger;
-        _message = "successfully";
     }
 
-    // login
+    // POST: api/user/login
     [HttpPost("login")]
     public async Task<IActionResult> Login([FromBody] LoginRequest request)
     {
@@ -40,28 +37,28 @@ public class UserController : ControllerBase
             var refreshToken = await _authService.GenerateRefreshTokenAsync(user, GetIpAddress());
 
             return Ok(new
-            {   
+            {
                 message = _message,
-                info = Ok(new
+                info = new
                 {
                     user.Id,
                     user.Username,
                     user.Email,
                     user.Role,
-                    Token = token,
-                    RefreshToken = refreshToken
-                })
+                    token,
+                    refreshToken
+                }
             });
         }
         catch (Exception ex)
         {
             _logger.LogError(ex, "Error during login");
-            return StatusCode((int)HttpStatusCode.InternalServerError, new { message = "An error occurred during login" });
+            return StatusCode((int)HttpStatusCode.InternalServerError,
+                new { message = "An error occurred during login" });
         }
     }
 
-
-    // register a new user
+    // POST: api/user/register
     [HttpPost("register")]
     public async Task<IActionResult> Register([FromBody] RegisterRequest request)
     {
@@ -77,35 +74,35 @@ public class UserController : ControllerBase
             var refreshToken = await _authService.GenerateRefreshTokenAsync(user, GetIpAddress());
 
             return Ok(new
-            {   
+            {
                 message = _message,
-                info = Ok(new
+                info = new
                 {
                     user.Id,
                     user.Username,
                     user.Email,
                     user.Role,
-                    Token = token,
-                    RefreshToken = refreshToken
-                })
+                    token,
+                    refreshToken
+                }
             });
         }
         catch (Exception ex)
         {
             _logger.LogError(ex, "Error during registration");
-            return StatusCode((int)HttpStatusCode.InternalServerError, new { message = "An error occurred during registration" });
+            return StatusCode((int)HttpStatusCode.InternalServerError,
+                new { message = "An error occurred during registration" });
         }
     }
 
-    // Get all users
+    // GET: api/user
     [HttpGet]
     public async Task<IActionResult> GetUsers()
     {
         try
         {
-            IEnumerable<UserDto> users = await _UserService.GetAllUsersAsync();
-
-            return Ok(new { message = _message, Info = users});
+            var users = await _userService.GetAllUsersAsync();
+            return Ok(new { message = _message, info = users });
         }
         catch (Exception ex)
         {
@@ -115,17 +112,17 @@ public class UserController : ControllerBase
         }
     }
 
-
-
+    // Helper: Get client IP address
     private string GetIpAddress()
     {
         if (Request.Headers.ContainsKey("X-Forwarded-For"))
             return Request.Headers["X-Forwarded-For"];
 
-        return HttpContext.Connection.RemoteIpAddress?.MapToIPv4().ToString();
+        return HttpContext.Connection.RemoteIpAddress?.MapToIPv4().ToString() ?? "unknown";
     }
 }
 
+// DTOs for request bodies
 public class RegisterRequest
 {
     public string Username { get; set; } = string.Empty;

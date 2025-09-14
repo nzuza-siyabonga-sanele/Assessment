@@ -1,6 +1,8 @@
-using TaskTracker.Core.DTOs;
 
-namespace TaskTracker.Core.Interfaces;
+
+using Senior_Developer_Assessment.DTOs;
+
+namespace Senior_Developer_Assessment.Models.Interfaces;
 
 // Interface using DTOs for security and display purposes
 public interface IUserService

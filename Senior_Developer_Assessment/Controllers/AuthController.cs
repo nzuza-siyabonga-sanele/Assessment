@@ -6,6 +6,7 @@ namespace Senior_Developer_Assessment.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
+
 public class AuthController : ControllerBase
 {
     private readonly IAuthService _authService;

@@ -1,9 +1,8 @@
 
 using Senior_Developer_Assessment.Models.Entities;
-using Senior_Developer_Assessment.Models.Interfaces;
 
 
-namespace TaskTracker.Core.Interfaces;
+namespace Senior_Developer_Assessment.Models.Interfaces;
 
 // Interface using user entities class for full information
 public interface IUserRepository : IRepository<User>

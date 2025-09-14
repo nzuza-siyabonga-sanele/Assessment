@@ -1,4 +1,4 @@
-namespace TaskTracker.API.DTOs;
+namespace Senior_Developer_Assessment.DTOs;
 
 // DTO for transferring task data with necessary fields
 public class TaskDto

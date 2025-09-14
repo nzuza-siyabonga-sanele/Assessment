@@ -9,6 +9,7 @@ namespace Senior_Developer_Assessment.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
+
 public class TasksController : ControllerBase
 {
     private readonly ITaskService _taskService;
