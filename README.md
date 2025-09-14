@@ -15,7 +15,7 @@ Docker Compose
 (Optional for local dev) .NET 8 SDK
 
 1. Clone the repository
-git clone https://github.com/your-org/tasktracker.git
+git clone https://github.com/nzuza-siyabonga-sanele/Assessment.git
 cd tasktracker
 
 2. Build and run with Docker Compose
