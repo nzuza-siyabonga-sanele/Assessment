@@ -10,12 +10,19 @@ using Senior_Developer_Assessment.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-builder.Services.AddControllers();
+// ------------------------
+// Dual-mode Connection String
+// ------------------------
+string connectionString = builder.Configuration.GetConnectionString("DefaultConnection")
+                          ?? Environment.GetEnvironmentVariable("DEFAULT_CONNECTION")
+                          ?? "Server=db;Database=AssessmentDb;User Id=sa;Password=YourStrong!Passw0rd;";
 
 // Add DbContext
 builder.Services.AddDbContext<DataDbContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+    options.UseSqlServer(connectionString));
+
+// Add services to the container
+builder.Services.AddControllers();
 
 // Add repositories
 builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
@@ -27,7 +34,6 @@ builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<ITaskService, TaskService>();
 builder.Services.AddScoped<IUserService, UserService>();
 
-
 // Add background service
 builder.Services.AddHostedService<TaskStatusUpdateService>();
 
@@ -35,7 +41,6 @@ builder.Services.AddHostedService<TaskStatusUpdateService>();
 var jwtSettings = builder.Configuration.GetSection("Jwt");
 var key = Encoding.ASCII.GetBytes(jwtSettings["Secret"]);
 
-// Add authentication with JWT Bearer tokens
 builder.Services.AddAuthentication(options =>
 {
     options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -55,7 +60,6 @@ builder.Services.AddAuthentication(options =>
     };
 });
 
-// Add authorization
 builder.Services.AddAuthorization();
 
 // Add Swagger
@@ -98,14 +102,9 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-// Enforce HTTPS
 app.UseHttpsRedirection();
-
-// Enable authentication and authorization
 app.UseAuthentication();
 app.UseAuthorization();
-
-// Map controllers
 app.MapControllers();
 
 // Seed database

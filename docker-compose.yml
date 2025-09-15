@@ -1,13 +1,30 @@
-version: "3.8"
 services:
   api:
-    image: mcr.microsoft.com/dotnet/sdk:8.0
-    working_dir: /app
+    build:
+      context: ./Senior_Developer_Assessment
+      dockerfile: Dockerfile
     volumes:
-      - ./:/app
-    command: dotnet watch run --project ./Senior_Developer_Assessment/Senior_Developer_Assessment.csproj --urls "http://+:80"
+      - ./Senior_Developer_Assessment:/app
+      - /app/bin
+      - /app/obj
     environment:
+      # Connect to SQL Server container or local DB
+      - DEFAULT_CONNECTION=Server=db;Database=AssessmentDb;User Id=sa;Password=YourStrong!Passw0rd;
       - DOTNET_USE_POLLING_FILE_WATCHER=1
-      - DOTNET_HOST_PATH=/usr/share/dotnet/dotnet
     ports:
       - "5000:80"
+    depends_on:
+      - db
+
+  db:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    environment:
+      SA_PASSWORD: "YourStrong!Passw0rd"
+      ACCEPT_EULA: "Y"
+    ports:
+      - "1433:1433"
+    volumes:
+      - mssql_data:/var/opt/mssql
+
+volumes:
+  mssql_data:
